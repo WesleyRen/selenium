@@ -40,13 +40,26 @@ public class SeleniumIntro {
             driver.findElement(By.id("inputUsername")).sendKeys("wes");
             driver.findElement(By.name("inputPassword")).sendKeys("rahulshettyacademy-bad");
             driver.findElement(By.className("submit")).click();
+
             System.out.println(driver.findElement(By.cssSelector("p.error")).getText());
+            driver.findElement(By.linkText("Forgot your password?")).click();
+
+            Thread.sleep(500);
+            driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("wes2");
+            driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("wes@wes.com");
+            driver.findElement(By.xpath("//input[@type='text'][2]")).clear(); // different ways of selecting.
+            driver.findElement(By.cssSelector("input[type='text']:nth-child(3)")).sendKeys("wes@gmail.com"); // different ways of selecting.
+            driver.findElement(By.xpath("//form/input[3]")).sendKeys("1234567890");
+
+            driver.findElement(By.cssSelector(".reset-pwd-btn")).click();
+            System.out.println(driver.findElement(By.cssSelector("form p")).getText());
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
-        }
-        driver.close();
+        } finally {
+            driver.close();
 //            driver.quit(); // quite the driver, which closes all the associated windows
-        System.exit(0);
+            System.exit(0);
+        }
     }
 }
