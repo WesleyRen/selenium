@@ -11,32 +11,14 @@ import java.time.Duration;
 import java.util.Set;
 
 public class Locator2 {
-    private static final String defaultDriver = "chrome";
-    private static final Set<String> allDrivers = Set.of("chrome", "firefox", "edge");
-
     public static void main(String[] args) throws InterruptedException {
-        String username = "wes";
-        System.out.println(String.join(" ", args));
-        String driverName = defaultDriver;
-        if (args.length > 0 && allDrivers.contains(args[0])) {
-            driverName = args[0];
-        }
-        WebDriver driver;
-
-        if (driverName.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "/Users/wes/Documents/webdriver/chromedriver");
-            driver = new ChromeDriver();
-        } else if (driverName.equals("firefox")) {
-            System.setProperty("webdriver.gecko.driver", "/Users/wes/Documents/webdriver/geckodriver");
-            driver = new FirefoxDriver();
-        } else {
-            System.setProperty("webdriver.edge.driver", "/Users/wes/Documents/webdriver/msedgedriver");
-            driver = new EdgeDriver(); // Microsoft Edge, need Edge browser installed to work.
-        }
+        final String driverName = Utils.getDriverName(args);
+        final WebDriver driver = Utils.getWebDriver(driverName);
 
         String password = getPassword(driver);
 
         driver.get("https://rahulshettyacademy.com/locatorspractice/");
+        String username = "wes";
         driver.findElement(By.id("inputUsername")).sendKeys(username);
         driver.findElement(By.name("inputPassword")).sendKeys(password);
         driver.findElement(By.className("submit")).click();
