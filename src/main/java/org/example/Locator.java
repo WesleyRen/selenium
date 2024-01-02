@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 import java.util.Set;
 
-public class SeleniumIntro {
+public class Locator {
     private static final String defaultDriver = "chrome";
     private static final Set<String> allDrivers = Set.of("chrome", "firefox", "edge");
 
