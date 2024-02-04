@@ -2,19 +2,21 @@ package org.example;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 
-import java.time.Duration;
-import java.util.Set;
-
-public class Locator2 {
+public class Login {
     public static void main(String[] args) throws InterruptedException {
         final String driverName = Utils.getDriverName(args);
         final WebDriver driver = Utils.getWebDriver(driverName);
 
+        login(driver);
+        logout(driver);
+
+        driver.close();
+        System.exit(0);
+    }
+
+    public static void login(WebDriver driver) throws InterruptedException {
         String password = getPassword(driver);
 
         driver.get("https://rahulshettyacademy.com/locatorspractice/");
@@ -30,11 +32,10 @@ public class Locator2 {
         System.out.println(driver.findElement(By.cssSelector("div[class='login-container'] h2")).getText());
         Assert.assertEquals(driver.findElement(By.cssSelector("div[class='login-container'] h2")).getText(),
                 "Hello " + username + ",");
+    }
 
+    private static void logout(WebDriver driver) {
         driver.findElement(By.xpath("//*[text()='Log Out']")).click();
-
-        driver.close();
-        System.exit(0);
     }
 
     public static String getPassword(WebDriver driver) throws InterruptedException {

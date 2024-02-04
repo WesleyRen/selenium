@@ -3,7 +3,7 @@ package org.example;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Locators3 {
+public class FindButtons {
     public static void main(String[] args) {
 
         final String driverName = Utils.getDriverName(args);
